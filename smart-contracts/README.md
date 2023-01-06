@@ -1,4 +1,4 @@
-# The First 1000 drop by rLabs
+# Glance, an account-bound Liveness Token concept built on Livepeer
 
 Based on [template-ethereum-contracts by wighawag](https://github.com/wighawag/template-ethereum-contracts)
 

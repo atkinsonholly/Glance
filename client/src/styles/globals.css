@@ -1,0 +1,79 @@
+@font-face {
+    font-family: 'Rubik Glitch';
+    src: url('/fonts/RubikGlitch-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Black';
+  src: url('/fonts/Rubik-Black.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Black Italic';
+  src: url('/fonts/Rubik-BlackItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Bold';
+  src: url('/fonts/Rubik-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Bold Italic';
+  src: url('/fonts/Rubik-BoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Extra Bold';
+  src: url('/fonts/Rubik-ExtraBold.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Extra Bold Italic';
+  src: url('/fonts/Rubik-ExtraBoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Italic';
+  src: url('/fonts/Rubik-Italic.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Light';
+  src: url('/fonts/Rubik-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Light Italic';
+  src: url('/fonts/Rubik-LightItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Medium';
+  src: url('/fonts/Rubik-Medium.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Medium Italic';
+  src: url('/fonts/Rubik-MediumItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik Regular';
+  src: url('/fonts/Rubik-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik SemiBold';
+  src: url('/fonts/Rubik-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik SemiBold Italic';
+  src: url('/fonts/Rubik-SemiBoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Rubik MonoOne Regular';
+  src: url('/fonts/RubikMonoOne-Regular.ttf');
+}

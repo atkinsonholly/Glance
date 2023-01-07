@@ -8,7 +8,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 	const {deployer} = await getNamedAccounts();
 	await deploy('Glance', {
 		from: deployer,
-		args: ['Glance', 'GLANCE', "testuri"],
+		args: ['Glance', 'GLANCE'],
 		log: true,
 		skipIfAlreadyDeployed: true,
 	});

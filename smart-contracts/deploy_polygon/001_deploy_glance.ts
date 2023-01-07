@@ -11,7 +11,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
 	await deploy('PolygonGlance', {
 		from: deployer,
 		contract: 'Glance',
-		args: ['Glance', 'GLANCE', "testuri"],
+		args: ['Glance', 'GLANCE'],
 		log: true,
 		skipIfAlreadyDeployed: true,
 	});

@@ -6,13 +6,12 @@ import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import {Ownable} from "@openzeppelin/contracts/access/Ownable.sol";
 import {ERC721URIStorage} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import {Counters} from "@openzeppelin/contracts/utils/Counters.sol";
-import {ERC721Burnable} from "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
 import {Strings} from "@openzeppelin/contracts/utils/Strings.sol";
 import {IERC5192} from "./IERC5192.sol";
 
 /// @notice Account-bound Video NFT
 /// @dev Token transfers may be locked and unlocked by the contract Owner
-contract Glance is ERC721, ERC721URIStorage, Ownable, ERC721Burnable, IERC5192 {
+contract Glance is ERC721, ERC721URIStorage, Ownable, IERC5192 {
 	using Strings for uint256;
 	using Counters for Counters.Counter;
 
@@ -25,6 +24,9 @@ contract Glance is ERC721, ERC721URIStorage, Ownable, ERC721Burnable, IERC5192 {
 
 	// Mapping tokenId to last verified timestamp
     mapping(uint256 => uint256) private _verified;
+
+	// Mapping address to tokenId
+    mapping(address => uint256) private _ownedId;
 
 	event Mint(
         address indexed sender,
@@ -63,7 +65,7 @@ contract Glance is ERC721, ERC721URIStorage, Ownable, ERC721Burnable, IERC5192 {
 	/// @param tokenId The tokenId to verify
 	/// @dev Intended that the tokenId can be verified when the verificationValidityPeriod has expired
 	function verify(uint256 tokenId) external onlyOwner {
-		require(_verified[tokenId] + verificationValidityPeriod <= block.timestamp, "Glance: tokenId is already verified");
+		require(_verified[tokenId] + verificationValidityPeriod <= block.timestamp, "Glance: tokenId is verified");
 		emit Verified(tokenId, block.timestamp);
 	}
 
@@ -74,14 +76,17 @@ contract Glance is ERC721, ERC721URIStorage, Ownable, ERC721Burnable, IERC5192 {
 		emit VerificationValidityPeriod(period);
 	}
 
-	/// @notice Owner function for minting a new token id
+	/// @notice User function for minting a new account-bound token
+	/// @dev Intended that a user can mint only 1 account-bound token
 	/// @param to Receiving address for the new token id
 	/// @param tokenUri The token uri for the token id
-	function mint(address to, string memory tokenUri) external onlyOwner returns (uint256) {
+	function mint(address to, string memory tokenUri) external returns (uint256) {
+		// TODO: add auth
 		require(balanceOf(to) == 0, "Glance: token already issued");
 		_tokenIds.increment();
         uint256 newItemId = _tokenIds.current();
 		_locked[newItemId] = true;
+		_ownedId[to] = newItemId;
         _mint(to, newItemId);
         _setTokenURI(newItemId, tokenUri);
         emit Mint(msg.sender, to, tokenUri, newItemId);
@@ -94,6 +99,16 @@ contract Glance is ERC721, ERC721URIStorage, Ownable, ERC721Burnable, IERC5192 {
     /// @param id Token id which will be burned
     function burnFrom(address from, uint256 id) external onlyOwner {
         require(from == ERC721.ownerOf(id), "Glance: not owner");
+		_ownedId[from] = 0;
+        _burn(id);
+    }
+
+	/// @notice User function to burn token with given `id`
+    /// @dev Intended that Owner has the right to burn user tokens
+    /// @param id Token id which will be burned
+    function burn(uint256 id) public {
+		require(msg.sender == ERC721.ownerOf(id), "Glance: not owner");
+		_ownedId[msg.sender] = 0;
         _burn(id);
     }
 
@@ -120,11 +135,26 @@ contract Glance is ERC721, ERC721URIStorage, Ownable, ERC721Burnable, IERC5192 {
         return _exists(id);
     }
 
+	/// @notice Query the token id owned by a given owner address.
+    /// @param owner the owner address to query.
+    /// @return tokenId if owned.
+    function ownedId(address owner) public view returns (uint256) {
+		require(owner != address(0), "Glance: invalid owner");
+		require(_ownedId[owner] != 0, "Glance: owner does not own a token");
+        return _ownedId[owner];
+    }
+
 	/// @notice Public function for viewing the contract's locked status (true or false)
 	/// @param tokenId The tokenId to view the locked status of
 	function locked(uint256 tokenId) external view override(IERC5192) returns (bool) {
 		require(_exists(tokenId), "Glance: invalid tokenId");
 		return _locked[tokenId];
+	}
+
+	/// @notice View if a token id is verified
+	/// @param tokenId The tokenId to view the verification status of
+	function isVerified(uint256 tokenId) external view returns (bool) {
+		return block.timestamp <= _verified[tokenId] + verificationValidityPeriod;
 	}
 
 	/// @notice Query if a contract implements interface `id`.

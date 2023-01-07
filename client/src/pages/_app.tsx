@@ -74,12 +74,12 @@ const ClientApp = ({ Component, pageProps }: AppProps) => {
             <Head>
               <meta content="width=device-width, initial-scale=1" name="viewport" />
               <link
-                href="/arteum_unsplash.jpeg"
+                href="/eye_favicon.jpeg"
                 rel="shortcut icon"
                 type="image/x-icon"
               />
               <link
-                href="/arteum_unsplash.jpeg"
+                href="/eye_favicon.jpeg"
                 rel="apple-touch-icon"
               />
               <link rel="preload" href="/fonts/RubikGlitch-Regular.ttf" as="font" crossOrigin="" />

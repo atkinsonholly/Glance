@@ -1,11 +1,10 @@
-import { Box, Button, Flex, Text, Textarea } from '@chakra-ui/react';
+import { Box, Button, Flex, Text, Textarea, Spacer, VStack } from '@chakra-ui/react';
 import { Player, useCreateStream } from '@livepeer/react';
 import { useMemo, useState } from 'react';
 
 import { Spinner } from './Spinner';
-import Loading from './Loading'
 
-  export const Stream = () => {
+export const Stream = () => {
     const [streamName, setStreamName] = useState<string>('');
     const {
       mutate: createStream,
@@ -14,35 +13,35 @@ import Loading from './Loading'
     } = useCreateStream(streamName ? { name: streamName } : null);
   
     const isLoading = useMemo(() => status === 'loading', [status]);
-
-    if (isLoading) return <Loading />;
   
     return (
-      <Box css={{ my: '$6' }}>
+      <VStack width="300px">
         <Box
-          css={{
-            mb: '$3',
-            width: '100%',
-          }}
+        width="300px"
+          
         >
+            <VStack>
+            <Text >
+              Enter a stream name below
+            </Text>
           <Textarea
-            size="3"
             placeholder="Stream name"
             onChange={(e) => setStreamName(e.target.value)}
           />
+          </VStack>
         </Box>
   
         {stream &&
           stream.rtmpIngestUrl &&
           (!stream?.playbackUrl || !stream.isActive) && (
-            <Text size="3" variant="gray" css={{ mt: '$3', mb: '$4' }}>
+            <Text color="gray" fontSize="12px" fontFamily="accent">
               Use the ingest URL <code>{stream.rtmpIngestUrl}</code> in a stream
               client like OBS to see content below.
             </Text>
           )}
   
         {stream?.playbackId && (
-          <Box css={{ mt: '$2' }}>
+          <Box >
             <Player
               title={stream?.name}
               playbackId={stream?.playbackId}
@@ -51,23 +50,22 @@ import Loading from './Loading'
             />
           </Box>
         )}
+        <Spacer/>
   
-        <Flex css={{ jc: 'flex-end', gap: '$3', mt: '$4' }}>
+        <Flex >
           {!stream && (
             <Button
-              css={{ display: 'flex', ai: 'center' }}
+            color="blue" fontSize="18px" fontFamily="alt" width='260px'
               onClick={() => {
                 createStream?.();
               }}
-              size="2"
               disabled={isLoading || !createStream}
-              variant="primary"
             >
-              {isLoading && <Spinner size={16} css={{ mr: '$1' }} />}
+              {isLoading && <Spinner />}
               Create Stream
             </Button>
           )}
         </Flex>
-      </Box>
+      </VStack>
     );
   };

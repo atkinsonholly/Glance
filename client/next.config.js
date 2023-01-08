@@ -22,6 +22,10 @@ module.exports = {
             source: '/:path*',
             destination: '/',
           },
+          {
+            source: '/api/asset/:path*',
+            destination: 'https://funny-cascaron-71bcc0.netlify.app/api/asset/:path*'
+          }
         ];
       },
     // assetPrefix: 'http://localhost:3000/',

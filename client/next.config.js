@@ -10,6 +10,6 @@ module.exports = {
           },
         ];
       },
-    assetPrefix: 'https://funny-cascaron-71bcc0.netlify.app/', // Resolve CORS issue
+    assetPrefix: './', // IPFS
     trailingSlash: true,
   };

@@ -7,7 +7,11 @@ const useGlance = () => {
         try {
             const response = await fetch(`https://api.thegraph.com/subgraphs/name/atkinsonholly/glance`, {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json',
+                    'Access-Control-Allow-Origin': '*' 
+                },
                 body: JSON.stringify({
                     query: `
                         query {

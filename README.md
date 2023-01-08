@@ -5,8 +5,9 @@
 The Glance platform connects users with Livepeer video & streaming functionality together with a custom smart-contract.
 
 Components:
-- Glance frontend https://funny-cascaron-71bcc0.netlify.app/ (soon glanc.eth!)
-- Glance smart-contract `Glance.sol`
+- Glance frontend https://funny-cascaron-71bcc0.netlify.app/ (soon glanc.eth with IPFS!)
+- Glance smart-contract `Glance.sol` - currently deployed on Polygon Mumbai
+- Soulbound token interface `IERC5192` means 1 Glance per account at any time
 - Glance sub-graph at https://thegraph.com/hosted-service/subgraph/atkinsonholly/glance 
 
 Outline:

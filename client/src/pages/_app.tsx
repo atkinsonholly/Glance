@@ -74,29 +74,29 @@ const ClientApp = ({ Component, pageProps }: AppProps) => {
             <Head>
               <meta content="width=device-width, initial-scale=1" name="viewport" />
               <link
-                href="/eye_favicon.jpeg"
+                href="./eye_favicon.jpeg"
                 rel="shortcut icon"
                 type="image/x-icon"
               />
               <link
-                href="/eye_favicon.jpeg"
+                href="./eye_favicon.jpeg"
                 rel="apple-touch-icon"
               />
-              <link rel="preload" href="/fonts/RubikGlitch-Regular.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-Black.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-BlackItalic.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-Bold.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-BoldItalic.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-ExtraBold.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-ExtraBoldItalic.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-Italic.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-Light.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-LightItalic.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-Medium.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-MediumItalic.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-Regular.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-SemiBold.ttf" as="font" crossOrigin="" />
-              <link rel="preload" href="/fonts/Rubik-SemiBoldItalic.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/RubikGlitch-Regular.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-Black.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-BlackItalic.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-Bold.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-BoldItalic.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-ExtraBold.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-ExtraBoldItalic.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-Italic.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-Light.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-LightItalic.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-Medium.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-MediumItalic.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-Regular.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-SemiBold.ttf" as="font" crossOrigin="" />
+              <link rel="preload" href="./fonts/Rubik-SemiBoldItalic.ttf" as="font" crossOrigin="" />
               
             </Head>
             <Layout>

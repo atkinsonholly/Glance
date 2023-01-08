@@ -6,7 +6,7 @@ module.exports = {
           // Rewrite everything else to use `pages/index`
           {
             source: '/:path*',
-            destination: '/',
+            destination: '/*',
           },
         ];
       },

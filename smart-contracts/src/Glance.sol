@@ -66,6 +66,7 @@ contract Glance is ERC721, ERC721URIStorage, Ownable, IERC5192 {
 	/// @dev Intended that the tokenId can be verified when the verificationValidityPeriod has expired
 	function verify(uint256 tokenId) external onlyOwner {
 		require(_verified[tokenId] + verificationValidityPeriod <= block.timestamp, "Glance: tokenId is verified");
+		_verified[tokenId] = block.timestamp;
 		emit Verified(tokenId, block.timestamp);
 	}
 
@@ -81,7 +82,6 @@ contract Glance is ERC721, ERC721URIStorage, Ownable, IERC5192 {
 	/// @param to Receiving address for the new token id
 	/// @param tokenUri The token uri for the token id
 	function mint(address to, string memory tokenUri) external returns (uint256) {
-		// TODO: add auth
 		require(balanceOf(to) == 0, "Glance: token already issued");
 		_tokenIds.increment();
         uint256 newItemId = _tokenIds.current();

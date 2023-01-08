@@ -6,6 +6,7 @@ import { Video } from "./Video";
 import { useAccount, useContractReads } from 'wagmi';
 import { videoNftAbi } from './videoNftAbi';
 import {useGlance} from '../../hooks/useGlance';
+import { BigNumber } from "ethers";
 
 const Hero: React.FC = () => {
     const { isConnected, address } = useAccount()
@@ -14,11 +15,15 @@ const Hero: React.FC = () => {
     const [id, setId] = useState<String>("0")
     
     const contract = {
-        address: '0x5862CA10ab1b2fcaB51c81cAD88BC08A77b92882',
+        address: '0x288Ca3Cd14604D6DcFe2a7d0cfc371e2fF6Aa1f6',
         abi: videoNftAbi,
       }
-
-    const { data: contractReadData, isLoading: isContractReadsLoading } = useContractReads({
+    
+    let contractReadData: any
+    let isContractReadsLoading: any
+    
+    if (address && address != undefined) {
+      const { data, isLoading } = useContractReads({
         contracts: [
           {
             ...contract,
@@ -28,7 +33,7 @@ const Hero: React.FC = () => {
           {
             ...contract,
             functionName: 'isVerified',
-            args: [address]
+            args: [BigNumber.from(id)]
           },
           {
             ...contract,
@@ -42,7 +47,10 @@ const Hero: React.FC = () => {
         ],
         watch: true
       })
-
+      contractReadData = data
+      isContractReadsLoading = isLoading
+    }
+   
       useEffect(() => {
         if (contractReadData != undefined) {
             if(contractReadData[0]) setBalance(contractReadData[0].toString())
@@ -60,7 +68,7 @@ const Hero: React.FC = () => {
       const {mints, fetchMints } = useGlance()
 
     useEffect(() => {
-        useContractReads
+      useContractReads
     }, [isConnected, address, isLoading]);
 
     useEffect(() => {
@@ -97,10 +105,10 @@ const Hero: React.FC = () => {
         <Box height="50px"></Box>
         <Box width="50%" >
             <HStack justify="space-between" px="2">
-                <VStack minHeight="600px" justify="flex-start">
+                {balance == "0" && <VStack minHeight="600px" justify="flex-start">
                     <Text fontFamily="accent" fontSize="20px" color="blue">Mint your account-bound video token here:</Text>
                     <Video />
-                </VStack>
+                </VStack>}
                 <Spacer />
                 <VStack minHeight="600px" justify="flex-start">
                     <Text fontFamily="accent" fontSize="20px" color="blue">Start a stream to get (re)verified below:</Text>

@@ -3,18 +3,18 @@
   "name": "Glance",
   "icons": [
     {
-      "src": "DoC_logo_square.png",
+      "src": "eye_favicon.jpeg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "DoC_logo_square.png.png",
-      "type": "image/png",
+      "src": "eye_favicon.jpeg",
+      "type": "image/jpeg",
       "sizes": "192x192"
     },
     {
-      "src": "DoC_logo_square.png.png",
-      "type": "image/png",
+      "src": "eye_favicon.jpeg",
+      "type": "image/jpeg",
       "sizes": "512x512"
     }
   ],

@@ -41,7 +41,7 @@ export const Video = () => {
   );
 
   const { config } = usePrepareContractWrite({
-    address: '0x5862CA10ab1b2fcaB51c81cAD88BC08A77b92882', // Mumbai 
+    address: '0x288Ca3Cd14604D6DcFe2a7d0cfc371e2fF6Aa1f6', // Mumbai 
     abi: videoNftAbi,
     functionName: 'mint',
     args:

@@ -6,3 +6,10 @@
   for = "/*"
     [headers.values]
     Access-Control-Allow-Origin = "*"
+
+
+[[redirects]]
+  from = "https://livepeer.studio/api/asset/:splat"
+  status = 200
+  force = true # COMMENT: ensure that we always redirect
+  headers = {Access-Control-Allow-Origin = "*"}

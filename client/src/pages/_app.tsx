@@ -27,7 +27,7 @@ import type { AppProps } from "next/app";
 const { chains, provider } = configureChains(
   [polygonMumbai, polygon],
   [
-    alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID }),
+    alchemyProvider({ apiKey: process.env.NEXT_PUBLIC_ALCHEMY_ID || "" }),
     publicProvider()
   ]
 );

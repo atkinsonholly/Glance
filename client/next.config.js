@@ -6,10 +6,10 @@ module.exports = {
           // Rewrite everything else to use `pages/index`
           {
             source: '/:path*',
-            destination: '/*',
+            destination: '/',
           },
         ];
       },
-    assetPrefix: './',
+    assetPrefix: 'https://funny-cascaron-71bcc0.netlify.app/', // Resolve CORS issue
     trailingSlash: true,
   };

@@ -1,4 +1,4 @@
 /*
-  Access-Control-Allow-Origin: https://funny-cascaron-71bcc0.netlify.app/
+  Access-Control-Allow-Origin: *
   Access-Control-Allow-Headers: Content-Type 
   Access-Control-Allow-Method: * 

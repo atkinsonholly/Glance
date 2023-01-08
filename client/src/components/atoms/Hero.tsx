@@ -1,11 +1,11 @@
-import React, {useEffect, useState, useMemo} from "react";
+import React, {useEffect, useState, useMemo, useCallback} from "react";
 import { Text, Box, HStack, Spacer, VStack, Button } from "@chakra-ui/react";
 import WagmiConnect from "./WagmiConnect";
 import { Stream } from "./Stream";
 import { Video } from "./Video";
 import { useAccount, useContractReads } from 'wagmi';
 import { videoNftAbi } from './videoNftAbi';
-
+import {useGlance} from '../../hooks/useGlance';
 
 const Hero: React.FC = () => {
     const { isConnected, address } = useAccount()
@@ -45,7 +45,6 @@ const Hero: React.FC = () => {
 
       useEffect(() => {
         if (contractReadData != undefined) {
-            console.log(contractReadData)
             if(contractReadData[0]) setBalance(contractReadData[0].toString())
             if(contractReadData[1]) setVerified(contractReadData[1].toString())
             if(contractReadData[2]) setId(contractReadData[2].toString())
@@ -57,17 +56,16 @@ const Hero: React.FC = () => {
           isContractReadsLoading,
         [isContractReadsLoading],
       );
-
-    //   useEffect(() => {
-    //     return () => {
-            
-    //     }
-    // }, [isConnected, address, isLoading]);
+    
+      const {mints, fetchMints } = useGlance()
 
     useEffect(() => {
         useContractReads
     }, [isConnected, address, isLoading]);
-   
+
+    useEffect(() => {
+      fetchMints()
+    }, [fetchMints]);
  
   return (
     <>
@@ -85,9 +83,16 @@ const Hero: React.FC = () => {
         </Box>
         <Box height="50px"></Box>
         <Box width="50%" alignContent="flex-start">
-            <HStack><Text fontFamily="heading" fontSize="28px" >Balance: </Text><Text fontFamily="body" fontSize="28px">{balance}</Text></HStack>
-            <HStack><Text fontFamily="heading" fontSize="28px">Token ID: </Text><Text fontFamily="body" fontSize="28px">{id}</Text></HStack>
-            <HStack><Text fontFamily="heading" fontSize="28px">Verified Status: </Text><Text fontFamily="body" fontSize="28px">{verified}</Text></HStack>
+          <HStack justify="space-between" px="2">
+            <Box>
+              <HStack><Text fontFamily="heading" fontSize="28px" >Balance: </Text><Text fontFamily="body" fontSize="28px">{balance}</Text></HStack>
+              <HStack><Text fontFamily="heading" fontSize="28px">Token ID: </Text><Text fontFamily="body" fontSize="28px">{id}</Text></HStack>
+              <HStack><Text fontFamily="heading" fontSize="28px">Verified Status: </Text><Text fontFamily="body" fontSize="28px">{verified}</Text></HStack>
+            </Box>
+            <Box>
+              <HStack><Text fontFamily="heading" fontSize="28px" >Total Minted: </Text><Text fontFamily="body" fontSize="28px">{mints && mints.length ? mints.length : 0}</Text></HStack>
+            </Box>
+          </HStack>
         </Box>
         <Box height="50px"></Box>
         <Box width="50%" >

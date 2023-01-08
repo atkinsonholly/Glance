@@ -9,8 +9,9 @@ const useGlance = () => {
                 method: 'POST',
                 headers: { 
                     'Content-Type': 'application/json',
-                    'Accept': 'application/json',
-                    'Access-Control-Allow-Origin': '*' 
+                    // 'Accept': 'application/json',
+                    // 'Access-Control-Allow-Origin': '*',
+                    // 'Access-Control-Allow-Headers': '*' 
                 },
                 body: JSON.stringify({
                     query: `
